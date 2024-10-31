@@ -1,2 +1,6 @@
-# lora-binghamton
-LoRa experiments in the Southern Tier region of NYS
+# Lora Experiments in Binghamton, NY (CS 526 - Internet of Things)
+
+## Team Members:
++ Callisto Hess
++ Gregory Maldonado
++ Yi-Shan “Annie” Wu
