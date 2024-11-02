@@ -22,7 +22,7 @@
 # Compiled Static libraries
 *.lai
 *.la
-*.a
+# *.a
 *.lib
 
 # Executables
@@ -40,8 +40,6 @@
 **/*.cbp
 **/CMakeScriptss
 
-include/divisible/*
-
 
 ## Local 
 
@@ -50,6 +48,13 @@ include/divisible/*
 
 build/**/*
 
-include/*
-lib/*
+# include/*
+# lib/*
 bin/*
+
+## User specific files / files that get generated on initial project load.
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/extensions.json
+
+.pio/build/
