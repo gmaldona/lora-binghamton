@@ -1,4 +1,4 @@
-# Lora Experiments in Binghamton, NY (CS 526 - Internet of Things)
+# LoRa Experiments in Binghamton, NY (CS 526 - Internet of Things)
 
 ## Team Members:
 + Callisto Hess
