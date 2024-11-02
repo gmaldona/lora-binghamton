@@ -1,10 +1,10 @@
 #include "LoRaWan_APP.h"
 #include <Arduino.h>
 
-uint8_t devEui[] = {};  
+uint8_t devEui[] = {LoRaWAN_devEui};  
 bool overTheAirActivation = true;
-uint8_t appEui[] = {};  // you should set whatever your TTN generates. TTN calls this the joinEUI, they are the same thing. 
-uint8_t appKey[] = {};  // you should set whatever your TTN generates 
+uint8_t appEui[] = {LoRaWAN_appEui};  // you should set whatever your TTN generates. TTN calls this the joinEUI, they are the same thing. 
+uint8_t appKey[] = {LoRaWAN_appKey};  // you should set whatever your TTN generates 
 
 //These are only used for ABP, for OTAA, these values are generated on the Nwk Server, you should not have to change these values
 uint8_t nwkSKey[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
