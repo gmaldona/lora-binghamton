@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 uint8_t devEui[] = {};  
-bool overTheAirActivation = false;
+bool overTheAirActivation = true;
 uint8_t appEui[] = {};  // you should set whatever your TTN generates. TTN calls this the joinEUI, they are the same thing. 
 uint8_t appKey[] = {};  // you should set whatever your TTN generates 
 
