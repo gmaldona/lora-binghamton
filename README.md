@@ -6,7 +6,7 @@
 
 [LoRa (Long Range)](https://www.semtech.com/lora) is a wireless modulation technique which operates on sub-gigahertz bands designed for low bitrate and long distance wireless communication. On the other hand, LoRAWAN is a Media Access Control protocol which defines how LoRa devices communicate. Our project aims to evaluate LoRa/LoRaWAN transmission bitrate and error rates to assess the technology’s reliability within the [Binghamton, NY region](https://maps.app.goo.gl/15VHVsXfRkMjXdqM7) - a region known for its dense forests and mountainous terrain potentially interfering with LoRa/LoRaWAN transmissions and receptions.
 
-[Full Project Abstract](./binghamton-lora-abstract.pdf)
+[Full Project Abstract](docs/binghamton-lora-abstract.pdf)
 
 ## Team Members:
 + Annie Wu
