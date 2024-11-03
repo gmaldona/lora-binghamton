@@ -2,8 +2,9 @@
 
 #include "LoRaWan_APP.h"
 
-uint8_t devEui[] = {LoRaWAN_devEui};
 bool overTheAirActivation = true;
+
+uint8_t devEui[] = {LoRaWAN_devEui};
 uint8_t appEui[] = {LoRaWAN_appEui};  // you should set whatever your TTN generates. TTN calls this the joinEUI, they are the same thing.
 uint8_t appKey[] = {LoRaWAN_appKey};  // you should set whatever your TTN generates
 
@@ -77,22 +78,37 @@ static void prepareTxFrame(uint8_t port) {
          |  PREAMBLE  |     DATA     |
          +------------+--------------+
             4 bytes        N bytes
+
         // clang-format on
     */
 
     // PACKET PREAMBLE - AGC1
 
-    appData[0] = 0x41; // A 
-    appData[1] = 0x43; // C
-    appData[2] = 0x47; // G
-    appData[3] = 0x31; // 1
+    appData[0] = 0x41;  // A
+    appData[1] = 0x43;  // C
+    appData[2] = 0x47;  // G
+    appData[3] = 0x31;  // 1
 
-    appDataSize = PREAMBLE_SIZE + 4;
+    // https://stackoverflow.com/questions/62903255/converting-hex-to-float
+    union {
+        double _double;
+        uint64_t _int;
+    } U_double;
 
-    appData[4] = 0x00;
-    appData[5] = 0x00;
-    appData[6] = 0x00;
-    appData[7] = 0x01;
+    uint8_t index = PREAMBLE_SIZE; 
+    // gps coordinate of Binghamton University
+    const double gps_coordinate[2] = {42.08950838980908, -75.96947777439027};
+
+    for (uint8_t i = 0; i < 2; ++i) {
+        U_double._double = gps_coordinate[i];
+        // top most bit shift v           v lower most bit shift
+        for (int8_t shift = 56; shift >= 0; shift -= 8) {
+            appData[index] = (uint8_t)(U_double._int >> shift) & 0xFF;
+            index++;
+        }
+    }
+
+    appDataSize = PREAMBLE_SIZE + (sizeof(double) * 2);
 }
 
 RTC_DATA_ATTR bool firstrun = true;
