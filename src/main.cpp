@@ -24,6 +24,8 @@ DeviceClass_t loraWanClass = CLASS_A;
 /*the application data transmission duty cycle.  value in [ms].*/
 uint32_t appTxDutyCycle = 15000;
 
+static const uint8_t PREAMBLE_SIZE = 4;
+
 /*ADR enable*/
 bool loraWanAdr = true;
 
@@ -66,11 +68,31 @@ static void prepareTxFrame(uint8_t port) {
      *the max value for different DR can be found in MaxPayloadOfDatarateCN470 refer to DataratesCN470 and BandwidthsCN470 in "RegionCN470.h".
      */
     // This data can be changed, just make sure to change the datasize as well.
-    appDataSize = 4;
-    appData[0] = 0x00;
-    appData[1] = 0x00;
-    appData[2] = 0x00;
-    appData[3] = 0x01;
+
+    /*
+        // clang-format off
+
+                    Packet Structure
+         +------------+----------------------+
+         |  PREAMBLE  |  	 	DATA	     |
+         +------------+----------------------+
+		    4 bytes		       N bytes
+        // clang-format on
+    */
+
+    // PACKET PREAMBLE - AGC1
+
+    appData[0] = 0x41; // A 
+    appData[1] = 0x43; // C
+    appData[2] = 0x47; // G
+    appData[3] = 0x31; // 1
+
+    appDataSize = PREAMBLE_SIZE + 4;
+
+    appData[4] = 0x00;
+    appData[5] = 0x00;
+    appData[6] = 0x00;
+    appData[7] = 0x01;
 }
 
 RTC_DATA_ATTR bool firstrun = true;

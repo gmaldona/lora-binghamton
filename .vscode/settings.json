@@ -2,5 +2,5 @@
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0 }",
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
 }
