@@ -73,10 +73,10 @@ static void prepareTxFrame(uint8_t port) {
         // clang-format off
 
                     Packet Structure
-         +------------+----------------------+
-         |  PREAMBLE  |  	 	DATA	     |
-         +------------+----------------------+
-		    4 bytes		       N bytes
+         +------------+--------------+
+         |  PREAMBLE  |     DATA     |
+         +------------+--------------+
+            4 bytes        N bytes
         // clang-format on
     */
 
