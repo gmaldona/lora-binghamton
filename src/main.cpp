@@ -72,7 +72,7 @@ static void prepareTxFrame(uint8_t port) {
     /*
         // clang-format off
 
-                    Packet Structure
+               Packet Structure
          +------------+--------------+
          |  PREAMBLE  |     DATA     |
          +------------+--------------+
