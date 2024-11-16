@@ -22,6 +22,16 @@ In the [platformio.ini](./platformio.ini) file, update `LoRaWAN_devEui`, `LoRaWA
 
 If the keys are accidentally committed, roll back the last commit and force push so the keys do not show up in the git history.
 
+## Connecting the Payload Decoder to The Things Network (TTN)
+
+TODO
+
+### Running the Docoder
+
+Run `./venv.sh` to create a python virtual environment and download the requirements. Activate the environment using `source venv/bin/activate` before running the python script.
+
+`cd` into `python/ttn-mqtt` and run the python script using `./main.py` to run the decoder.
+
 ## Contributors:
 + Annie Wu
 + Callisto Hess
