@@ -10,6 +10,9 @@
  * Thomas J. Watson College of Engineering and Applied Sciences, Binghamton University
  */
 
+
+// -----> TODO TODO TODO replace timer send with a button press send TODO TODO TODO <------
+
 #include <Arduino.h>
 
 #include "LoRaWan_APP.h"
