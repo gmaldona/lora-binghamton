@@ -58,3 +58,5 @@ bin/*
 .vscode/extensions.json
 
 .pio/build/
+
+python/ttn-mqtt/config.ini
