@@ -30,6 +30,9 @@
 *.out
 *.app
 
+# Python stuff
+*.pyc
+
 **/cmake-build-debug
 **/CMakeCache.txt
 **/cmake_install.cmake
