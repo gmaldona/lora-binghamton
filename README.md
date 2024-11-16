@@ -22,7 +22,7 @@ In the [platformio.ini](./platformio.ini) file, update `LoRaWAN_devEui`, `LoRaWA
 
 If the keys are accidentally committed, roll back the last commit and force push so the keys do not show up in the git history.
 
-## Team Members:
+## Contributors:
 + Annie Wu
 + Callisto Hess
 + Gregory Maldonado
