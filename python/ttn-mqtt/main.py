@@ -24,8 +24,6 @@ decoder = agc_decode.decode
 
 # Callback when successfully connected to MQTT broker.
 def on_connect(client, userdata, flags, rc):
-    global decoder
-
     print("Connected to MQTT broker.")
 
     if rc != 0:
@@ -34,6 +32,8 @@ def on_connect(client, userdata, flags, rc):
 
 # Callback function to handle incoming MQTT messages
 def on_message(client, userdata, message):
+    global decoder
+    
     # Timestamp on reception.
     current_date = datetime.now()
 
