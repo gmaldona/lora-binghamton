@@ -10,6 +10,9 @@
 #
 # Thomas J. Watson College of Engineering and Applied Sciences, Binghamton University
 
+import sys
+from pathlib import Path
+import os
 import base64
 import configparser
 from datetime import datetime
@@ -29,9 +32,13 @@ def on_connect(client, userdata, flags, rc):
     if rc != 0:
         print(" Error, result code: {}".format(rc))
 
+def on_log(client, userdata, level, buf):
+    with open('logs/main.log', 'a') as fp:
+        fp.write(f'[{datetime.now()}] {buf}\n')
+
 
 # Callback function to handle incoming MQTT messages
-def on_message(client, userdata, message):
+def on_message(client: mqtt.Client, userdata, message):
     global decoder
     
     # Timestamp on reception.
@@ -59,10 +66,19 @@ def on_message(client, userdata, message):
             return
 
         if message:
-            print(f'[{current_date}] {message}')
+            print(f'[{current_date}] payload="{message}"')
+
+            with open(f'logs/{datetime.now().strftime("%Y-%m-%d")}.log', 'a') as fp:
+                fp.write(f'[{datetime.now()}] payload="{message}"\n')
 
 
 def main():
+    
+    if not (os.path.join(*str(Path().absolute()).split('/')[-2:]) == 'python/ttn-mqtt'):
+        print("[ERROR] Please execute python script from within `lora-binghamton/python/mqtt` directory. Exiting... ", file=sys.stderr)
+        exit(1)
+
+    os.makedirs('logs', exist_ok=True)
     # Read in config file with MQTT details.
     config = configparser.ConfigParser()
     config.read("config.ini")
@@ -80,6 +96,7 @@ def main():
     # Setup callbacks.
     client.on_connect = on_connect
     client.on_message = on_message
+    client.on_log=on_log
 
     # Connect to broker.
     client.username_pw_set(username, password)

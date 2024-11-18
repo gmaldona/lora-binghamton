@@ -64,3 +64,5 @@ bin/*
 
 **/config.ini
 venv/
+
+python/ttn-mqtt/logs/*.log

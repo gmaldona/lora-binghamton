@@ -18,4 +18,4 @@ def decode(payload):
     lat  = struct.unpack('>d', payload[0:8])[0]
     long = struct.unpack('>d', payload[8:16])[0]
 
-    return (lat, long)
+    return f'{lat}, {long}'
