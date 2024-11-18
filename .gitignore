@@ -62,5 +62,5 @@ bin/*
 
 .pio/build/
 
-python/ttn-mqtt/config.ini
+**/config.ini
 venv/
