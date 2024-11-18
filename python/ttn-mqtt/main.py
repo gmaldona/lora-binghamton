@@ -50,7 +50,7 @@ def on_message(client, userdata, message):
     preamble = raw_payload[:4]
     remaining_payload = raw_payload[4:]
 
-    if str(preamble) == 'agc1':
+    if str(preamble.decode()) == 'ACG1':
         try:
             message = decoder(remaining_payload)
         except Exception as e:

@@ -15,7 +15,7 @@ import struct
 def decode(payload):
     # The first 8 bytes are the lat coordinates
     # The last 8 bytes are the long coordinates 
-    lat  = struct.unpack('>f', payload[0:8])[0]
-    long = struct.unpack('>f', payload[8:16])[0]
+    lat  = struct.unpack('>d', payload[0:8])[0]
+    long = struct.unpack('>d', payload[8:16])[0]
 
     return (lat, long)
