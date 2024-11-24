@@ -1,4 +1,7 @@
 import paho.mqtt.client as mqtt
+import configparser
+import os
+from pathlib import Path
 import json
 import csv
 
@@ -32,12 +35,34 @@ def on_message(client, userdata, msg):
             writer.writerow([gateway_time, rssi, snr])
 
 
-# Set up MQTT client
-client = mqtt.Client()
-client.username_pw_set("cs-426-526-iot@ttn", "NNSXS.ZGF7PM26FZCMYUMK6WB3XQEV7ZLHCKJAISKXFNY.N7JWNKHQDSMU5NLNX4ISGJO4ECAW32SF6RVCNJX3EBUBISKXXY3A")  # Replace with your password
-client.on_connect = on_connect
-client.on_message = on_message
+def main():
+    os.makedirs('logs', exist_ok=True)
+    # Read in config file with MQTT details.
+    config = configparser.ConfigParser()
+    config.read("config.ini")
 
-# Connect to TTN MQTT broker
-client.connect("nam1.cloud.thethings.network", 1883, 60)
-client.loop_forever()
+    # MQTT broker details
+    broker_address = config["mqtt"]["broker"]
+    username = config["mqtt"]["username"]
+    password = config["mqtt"]["password"]
+
+    topic = "v3/+/devices/+/up"
+
+    # MQTT client setup
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1)
+
+    # Setup callbacks.
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    # Connect to broker.
+    client.username_pw_set(username, password)
+    client.tls_set()
+    client.connect(broker_address, 8883)
+
+    # Subscribe to the MQTT topic and start the MQTT client loop
+    client.subscribe(topic)
+    client.loop_forever()
+
+if __name__ == '__main__':
+    main()
