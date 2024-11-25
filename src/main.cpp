@@ -1,7 +1,7 @@
 /*
  * CS 526 Internet of Things
- * 
- * Analysis of LoRa/LoRaWAN Under Varied Environmental Conditions 
+ *
+ * Analysis of LoRa/LoRaWAN Under Varied Environmental Conditions
  * within the Southern Tier Region of New York State
  *
  * contributors: Annie Wu, Callisto Hess, Gregory Maldonado
@@ -9,7 +9,6 @@
  *
  * Thomas J. Watson College of Engineering and Applied Sciences, Binghamton University
  */
-
 
 // -----> TODO TODO TODO replace timer send with a button press send TODO TODO TODO <------
 
@@ -38,7 +37,7 @@ LoRaMacRegion_t loraWanRegion = ACTIVE_REGION;  // we define this as a user flag
 DeviceClass_t loraWanClass = CLASS_A;
 
 /*the application data transmission duty cycle.  value in [ms].*/
-uint32_t appTxDutyCycle = 15000;
+uint32_t appTxDutyCycle = 10000;
 
 static const uint8_t PREAMBLE_SIZE = 4;
 
@@ -110,7 +109,7 @@ static void prepareTxFrame(uint8_t port) {
         uint64_t _int;
     } U_double;
 
-    uint8_t index = PREAMBLE_SIZE; 
+    uint8_t index = PREAMBLE_SIZE;
     // gps coordinate of Binghamton University
     const double gps_coordinate[2] = {42.08950838980908, -75.96947777439027};
 
