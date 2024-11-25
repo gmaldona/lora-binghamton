@@ -1,8 +1,10 @@
 import json
 import csv
+from datetime import datetime, timedelta
+import re
 
 # Load the JSON file
-with open("../data/acg-iot-3_live_data_1732482931779.json", "r") as file:  # Replace with your actual filename
+with open("../logs/acg-iot-3_live_data_1732522681848.json", "r") as file:  # Replace with your actual filename
     data = json.load(file)
 
 print(f"Type of Data: {type(data)}")  # Confirming the data type is a list
@@ -28,7 +30,11 @@ with open("../data/lorawan_extracted_data.csv", "w", newline="") as csvfile:
             received_time = rx_metadata.get("received_at", uplink_message.get("received_at", "N/A"))  # Prefer rx_metadata timestamp if available
             timestamp = uplink_message.get("settings", {}).get("timestamp", "N/A")
 
+            # Formatting Data
+            received_time = re.sub(r"(\.\d{6})\d*", r"\1", received_time)
+            parsed_time = datetime.strptime(received_time, "%Y-%m-%dT%H:%M:%S.%fZ")- timedelta(hours=5)
+            formatted_time = parsed_time.strftime("%Y-%m-%d %H:%M:%S")
             # Write to the CSV file
-            writer.writerow([received_time, timestamp, rssi, snr, spreading_factor, frequency, airtime])
+            writer.writerow([formatted_time, timestamp, rssi, snr, spreading_factor, frequency, airtime])
 
 print("Data extraction completed! Check 'lorawan_extracted_data.csv'.")
